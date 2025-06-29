@@ -18,11 +18,6 @@ class Analytic extends Model
         'likes',
     ];
 
-    public function user(): BelongsTo
-    {
-        return $this->BelongsTo(User::class);
-    }
-
     public function post(): BelongsTo
     {
         return $this->BelongsTo(Post::class);

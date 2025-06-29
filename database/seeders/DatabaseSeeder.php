@@ -2,8 +2,12 @@
 
 namespace Database\Seeders;
 
+use App\Models\Analytic;
+use App\Models\Post;
 use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Comment;
+use App\Models\Role;
+use App\Models\Tag;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -13,11 +17,23 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        $roles = [
+            ['role_name' => 'Admin', 'access_level' => 3],
+            ['role_name' => 'Moderator', 'access_level' => 2],
+            ['role_name' => 'Registered_user', 'access_level' => 1],
+        ];
+        
+        foreach($roles as $role){
+            Role::firstOrCreate(
+                ['role_name' => $role['role_name']],
+                ['access_level' => $role['access_level']],
+            );
+        }
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        User::factory(5)->create();
+        Post::factory(5)->create();
+        Analytic::factory(5)->create();
+        Comment::factory(5)->create();
+        Tag::factory(5)->create();
     }
 }

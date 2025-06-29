@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->string('content')->nullable();
             $table->string('image')->nullable()->comments('image path or URL');
             $table->timestamp('published_date')->nullable();
             $table->enum('status', ['draft', 'published', 'archived'])->default('draft');
