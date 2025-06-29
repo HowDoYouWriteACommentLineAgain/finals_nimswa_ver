@@ -18,11 +18,12 @@ class PostFactory extends Factory
      */
     public function definition(): array
     {
-        $response = Http::get('https://coffee.alexflipnote.dev/random.json');
+        // $response = Http::get('https://coffee.alexflipnote.dev/random.json');
         return [
         'title' => $this->faker->sentence(), 
         'content' => $this->faker->text(), 
-        'image' => $response, 
+        // 'image' => $response, 
+        'image' => 'https://coffee.alexflipnote.dev/IMk-3G2_fk8_coffee.jpg', //replace this with above for true random
         'published_date' => $this->faker->dateTime(), 
         'status' => $this->faker->randomElement(Status::cases()),
         ];
