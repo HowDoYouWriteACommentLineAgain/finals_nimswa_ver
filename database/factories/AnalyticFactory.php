@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Comment;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Post;
 
@@ -17,10 +18,11 @@ class AnalyticFactory extends Factory
      */
     public function definition(): array
     {
+        $post = Post::inRandomOrder()->first();
         return [
-            'post_id' => Post::inRandomOrder()->first()->id,
+            'post_id' => $post->id,
             'views' => $this->faker->numberBetween(0, 1000),
-            'comments' => $this->faker->numberBetween(0, 100),
+            'comments' => Comment::where('post_id', $post->id)->count(),
             'likes' => $this->faker->numberBetween(0, 800),
         ];
     }
